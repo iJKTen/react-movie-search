@@ -42,6 +42,7 @@ const MovieSearch = () => {
           />
           <Pager
             totalPages={state.pager.total}
+            currentPage={state.pager.current}
             changePage={changePage}
           />
         </Fragment>
