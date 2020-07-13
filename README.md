@@ -13,4 +13,4 @@ npm start
 ```
 
 ### UI
-![App](https://raw.githubusercontent.com/iJKTen/github-card/master/public/example.png)
+![App](https://raw.githubusercontent.com/iJKTen/react-movie-search/master/App.png)
