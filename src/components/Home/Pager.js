@@ -2,7 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Button = styled.button`
-    font-weight: ${props => props.currentPage ? 'bold' : 'normal'}
+    font-weight: ${props => props.currentPage ? 'bold' : 'normal'};
+    text-align: center;
+    box-shadow: none;
+    border: 0;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #FFF;
+    color: ${props => props.currentPage ? 'darkgreen' : 'black'};
 `
 
 const Pager = (props) => {

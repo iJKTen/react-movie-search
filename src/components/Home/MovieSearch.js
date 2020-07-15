@@ -13,8 +13,8 @@ const MovieSearch = () => {
   }
 
   const searchMovies = (e) => {
-    const url = buildUrl(query);
     e.preventDefault();
+    const url = buildUrl(query);
     fetchMovies(url);
   }
 
