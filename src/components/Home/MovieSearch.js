@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useRef } from 'react';
+import {debounce} from 'lodash';
 import MovieCards from './MovieCards';
 import useMovie from '../../hooks/useMovie';
 import MovieSearchForm from './MovieSearchForm';
@@ -7,6 +8,11 @@ import Pager from './Pager';
 const MovieSearch = () => {
   const [query, setQuery] = useState('');
   const { state, fetchMovies } = useMovie('');
+  const debounceSave = useRef(
+    debounce((nextValue) => {
+      const url = buildUrl(nextValue);
+      fetchMovies(url);
+    }, 500)).current;
 
   const buildUrl = (query, page = 1) => {
     return `https://api.themoviedb.org/3/search/movie?api_key=ff22151cbe2f68c90e1d8448c9923ad6&language=en-US&query=${query}&page=${page}&include_adult=false`
@@ -23,12 +29,17 @@ const MovieSearch = () => {
     fetchMovies(url);
   }
 
+  const setNewQuery = (newValue) => {
+    setQuery(newValue);
+    debounceSave(newValue);
+  }
+
   return (
     <Fragment>
       <MovieSearchForm
         onSubmit={searchMovies}
         query={query}
-        setQuery={setQuery}
+        setQuery={setNewQuery}
       />
 
       {state.status === 'pending' &&
